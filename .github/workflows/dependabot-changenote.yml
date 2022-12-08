@@ -4,9 +4,6 @@ on:
     branches:
       - 'dependabot/**'
 
-permissions:
-  pull-requests: write
-
 jobs:
   changenote:
     name: Dependabot Change Note
