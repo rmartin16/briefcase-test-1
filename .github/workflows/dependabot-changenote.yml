@@ -8,5 +8,5 @@ on:
 jobs:
   changenote:
     name: Dependabot Change Note
-    uses: beeware/.github/.github/workflows/dependabot-changenote.yml@meta-dependabot
+    uses: rmartin16/.github-beeware-test/.github/workflows/dependabot-changenote.yml@main
     secrets: inherit
