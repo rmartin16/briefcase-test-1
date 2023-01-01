@@ -1,0 +1,1 @@
+Update rich requirement from ~=12.4 to >=12.4,<14.0.
