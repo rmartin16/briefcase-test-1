@@ -198,6 +198,8 @@ class JDK(ManagedTool):
 
 """
 
+        tools.logger.error(install_message or "no install message")
+
         if java is None:
             # If we've reached this point, any user-provided JAVA_HOME is broken;
             # use the Briefcase one.
