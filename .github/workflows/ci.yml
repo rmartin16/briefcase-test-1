@@ -39,6 +39,9 @@ jobs:
           set -x
           ${JAVA_HOME}/bin/javac -version
 
+      - name: Checkout
+        uses: actions/checkout@v3.5.2
+
       - name: Set up Python
         uses: actions/setup-python@v4.6.1
 
