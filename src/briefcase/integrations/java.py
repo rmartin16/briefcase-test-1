@@ -67,7 +67,7 @@ class JDK(ManagedTool):
         java_home = tools.os.environ.get("JAVA_HOME", "")
         install_message = None
 
-        print(f"1: {java_home=}")
+        tools.logger.error(f"1: {java_home=}")
 
         if tools.host_arch == "arm64" and tools.host_os == "Darwin":
             # Java 8 is not available for macOS on ARM64, so we will require Rosetta.
@@ -85,7 +85,7 @@ class JDK(ManagedTool):
                 # No java on this machine.
                 pass
 
-        print(f"2: {java_home=}")
+        tools.logger.error(f"2: {java_home=}")
 
         if java_home:
             try:
@@ -99,7 +99,7 @@ class JDK(ManagedTool):
                 )
                 # This should be a string of the form "javac 1.8.0_144\n"
 
-                print(f"{output=}")
+                tools.logger.error(f"{output=}")
 
                 version_str = output.strip("\n").split(" ")[1]
                 vparts = version_str.split(".")
@@ -200,6 +200,8 @@ class JDK(ManagedTool):
 
         tools.logger.error(install_message or "no install message")
 
+        tools.logger.error(f"{java=}")
+
         if java is None:
             # If we've reached this point, any user-provided JAVA_HOME is broken;
             # use the Briefcase one.
@@ -209,6 +211,8 @@ class JDK(ManagedTool):
             # release). The actual JAVA_HOME is deeper inside the directory structure.
             if tools.host_os == "Darwin":
                 java_home = java_home / "Contents" / "Home"
+
+            tools.logger.error(f"3: {java_home=}")
 
             java = JDK(tools=tools, java_home=java_home)
 
