@@ -67,6 +67,8 @@ class JDK(ManagedTool):
         java_home = tools.os.environ.get("JAVA_HOME", "")
         install_message = None
 
+        print(f"1: {java_home=}")
+
         if tools.host_arch == "arm64" and tools.host_os == "Darwin":
             # Java 8 is not available for macOS on ARM64, so we will require Rosetta.
             cls.verify_rosetta(tools=tools)
@@ -83,6 +85,8 @@ class JDK(ManagedTool):
                 # No java on this machine.
                 pass
 
+        print(f"2: {java_home=}")
+
         if java_home:
             try:
                 # If JAVA_HOME is defined, try to invoke javac.
@@ -94,6 +98,9 @@ class JDK(ManagedTool):
                     ],
                 )
                 # This should be a string of the form "javac 1.8.0_144\n"
+
+                print(f"{output=}")
+
                 version_str = output.strip("\n").split(" ")[1]
                 vparts = version_str.split(".")
                 if len(vparts) == 3 and vparts[:2] == ["1", "8"]:
