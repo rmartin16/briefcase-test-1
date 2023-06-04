@@ -44,9 +44,13 @@ jobs:
 
       - name: Set up Python
         uses: actions/setup-python@v4.6.1
+        with:
+          python-version: 3.11
 
       - name: install briefcase
-        run: python -m pip install -Ue .[dev]
+        run: |
+          python -m pip install -U pip setuptools wheel
+          python -m pip install -U .[dev]
 
       - name: briefcase java
         run: python -c 'from briefcase.integrations.subprocess import Subprocess; from briefcase.integrations.base import ToolCache; from briefcase.console import Console, Log; from briefcase.integrations.java import JDK; tc = ToolCache(Log(), Console(), base_path="."); Subprocess.verify(tc); JDK.verify_install(tc, install=False)'
