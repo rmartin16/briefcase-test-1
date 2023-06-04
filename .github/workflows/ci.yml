@@ -25,11 +25,11 @@ env:
 jobs:
   jdk:
     name: JDK
-    runs-on: ${{ matrix.platform }}-latest
+    runs-on: ${{ matrix.platform }}
     strategy:
       fail-fast: false
       matrix:
-        platform: [ "macos", "ubuntu", "windows" ]
+        platform: [ "macos-latest", "ubuntu-22.04", "windows-latest" ]
     steps:
       - name: env
         run: env
